@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
-import greeting from '../src/cli.js';
+import { getUserName } from '../src/cli.js';
 
-greeting();
+console.log('Welcome to the Brain Games!');
+const name = getUserName();
+console.log(`Hello, ${name}!`);
