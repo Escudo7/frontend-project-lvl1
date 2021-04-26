@@ -1,4 +1,4 @@
 import readlineSync from 'readline-sync';
 
 export const getUserName = () => readlineSync.question('May I have your name? ');
-export const getUserAnswer = () => readlineSync.prompt({ prompt: '' });
+export const getUserAnswer = () => readlineSync.prompt({ prompt: 'Your answer: ' });

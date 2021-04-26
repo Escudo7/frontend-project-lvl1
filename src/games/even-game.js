@@ -1,19 +1,17 @@
-import { getUserAnswer } from './cli.js';
+import { getUserAnswer } from '../cli.js';
+import findRandomNumber from '../services.js';
 
 const minNumber = 1;
 const maxNumber = 100;
 const evenAnswer = 'yes';
 const oddAnswer = 'no';
 
-const findRandomNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-
 const isEven = (number) => number % 2 === 0;
 
-const startTour = (userName) => {
+const startTour = () => {
   const number = findRandomNumber(minNumber, maxNumber);
   console.log(number);
   const userAnswer = getUserAnswer().toLowerCase();
-  console.log(`Your answer: ${userAnswer}`);
 
   const correctAnswer = isEven(number) ? evenAnswer : oddAnswer;
   const tourResult = correctAnswer === userAnswer;
@@ -22,22 +20,21 @@ const startTour = (userName) => {
     console.log('Correct!');
   } else {
     console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-    console.log(`Let's try again, ${userName}!`);
   }
 
   return tourResult;
 };
 
-export default (userName) => {
+export default (tourCount) => {
   console.log(`Answer "${evenAnswer}" if the number is even, otherwise answer "${oddAnswer}".`);
 
-  for (let i = 0; i < 3; i += 1) {
-    const tourResult = startTour(userName);
+  for (let i = 1; i <= tourCount; i += 1) {
+    const tourResult = startTour();
 
     if (tourResult === false) {
-      return;
+      return false;
     }
   }
 
-  console.log(`Congratulations, ${userName}!`);
+  return true;
 };
