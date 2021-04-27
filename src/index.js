@@ -1,35 +1,29 @@
-import { getUserName } from './cli.js';
-import evenGame from './games/even-game.js';
-import calculatorGame from './games/calculator-game.js';
+import { getUserAnswer, getUserName } from './cli.js';
 
 const tourCount = 3;
 
-const startGame = (gameName) => {
+const startGame = (game) => {
   console.log('Welcome to the Brain Games!');
   const userName = getUserName();
   console.log(`Hello, ${userName}!`);
 
-  let game;
+  const gameTour = game();
 
-  switch (gameName) {
-    case 'even':
-      game = evenGame;
-      break;
+  for (let i = 1; i <= tourCount; i += 1) {
+    const correctAnswer = gameTour();
+    const userAnswer = getUserAnswer().toLowerCase();
 
-    case 'calculator':
-      game = calculatorGame;
-      break;
+    if (userAnswer === correctAnswer) {
+      console.log('Correct!');
+    } else {
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+      console.log(`Let's try again, ${userName}!`);
 
-    default:
       return;
+    }
   }
 
-  const gameResult = game(tourCount);
-  const finalText = gameResult === true
-    ? `Congratulations, ${userName}!`
-    : `Let's try again, ${userName}!`;
-
-  console.log(finalText);
+  console.log(`Congratulations, ${userName}!`);
 };
 
 export default startGame;
