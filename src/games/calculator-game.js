@@ -1,4 +1,3 @@
-import { getUserAnswer } from '../cli.js';
 import findRandomNumber from '../services.js';
 
 const minNumber = 1;
@@ -28,30 +27,12 @@ const startTour = () => {
   const operator = operatorList[operatorIndex];
 
   console.log(`Question: ${number1} ${operator} ${number2}`);
-  const userAnswer = getUserAnswer().toLowerCase();
 
-  const correctAnswer = String(calculateAnser(number1, number2, operator));
-  const tourResult = correctAnswer === userAnswer;
-
-  if (tourResult === true) {
-    console.log('Correct!');
-  } else {
-    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-  }
-
-  return tourResult;
+  return String(calculateAnser(number1, number2, operator));
 };
 
-export default (tourCount) => {
+export default () => {
   console.log('What is the result of the expression?');
 
-  for (let i = 1; i <= tourCount; i += 1) {
-    const tourResult = startTour();
-
-    if (tourResult === false) {
-      return false;
-    }
-  }
-
-  return true;
+  return startTour;
 };
