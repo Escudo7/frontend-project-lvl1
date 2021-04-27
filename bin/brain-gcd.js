@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
 import startGame from '../src/index.js';
-import even from '../src/games/even-game.js';
+import gcd from '../src/games/gcd-game.js';
 
-startGame(even);
+startGame(gcd);
