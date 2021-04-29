@@ -9,7 +9,7 @@ const isEven = (number) => number % 2 === 0;
 
 const startTour = () => {
   const number = findRandomNumber(minNumber, maxNumber);
-  console.log(number);
+  console.log(`Question: ${number}`);
 
   return isEven(number) ? evenAnswer : oddAnswer;
 };
